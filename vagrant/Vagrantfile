@@ -1,13 +1,14 @@
 
 VAGRANTFILE_API_VERSION = "2"
-VAGRANTFILE_DISTR = "ubuntu/trusty64"
+#VAGRANTFILE_DISTR = "ubuntu/trusty64"
+VAGRANTFILE_DISTR = "ubuntu/bionic64"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provider = 'virtualbox'
   
   #config.ssh.insert_key = false
 
-  config.vm.define "srv1" do | p |
+  config.vm.define "srv4" do | p |
    #p.ssh.insert_key = false
    #p.ssh.private_key_path = false
    #p.ssh.username = "vagrant"
@@ -15,36 +16,34 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    #p.vm.box = 'debian/bullseye64'
    p.vm.box = VAGRANTFILE_DISTR
    #p.vm.box = 'debian/buster64'
-   p.vm.host_name = "srv1"
-   p.vm.network "public_network", ip: "10.20.8.106", bridge: "wlp7s0" 
+   p.vm.host_name = "srv4"
+   p.vm.network "public_network", ip: "10.20.8.109", bridge: "wlp7s0" 
        p.vm.provider :virtualbox do |res|
           res.customize ["modifyvm", :id, "--cpus", "2"]
           res.customize ["modifyvm", :id, "--memory", "2000"]
        end
   end
 
-  config.vm.define "srv2" do | b |
-   b.vm.box= VAGRANTFILE_DISTR
-   b.vm.host_name = "srv2"
-   b.vm.network "public_network", ip: "10.20.8.107", bridge: "wlp7s0"
-      b.vm.provider :virtualbox do |res|
-        res.customize ["modifyvm", :id, "--cpus", "2"]
-        res.customize ["modifyvm", :id, "--memory", "2000"]
-      end
-  end
+  #config.vm.define "srv2" do | b |
+  # b.vm.box= VAGRANTFILE_DISTR
+  # b.vm.host_name = "srv2"
+  # b.vm.network "public_network", ip: "10.20.8.107", bridge: "wlp7s0"
+  #    b.vm.provider :virtualbox do |res|
+  #      res.customize ["modifyvm", :id, "--cpus", "2"]
+  #      res.customize ["modifyvm", :id, "--memory", "2000"]
+  #    end
+  #end
 
-  config.vm.define "srv3" do | b |
-    b.vm.box= VAGRANTFILE_DISTR
-    b.vm.host_name = "srv3"
-    b.vm.network "public_network", ip: "10.20.8.108", bridge: "wlp7s0"
-       b.vm.provider :virtualbox do |res|
-         res.customize ["modifyvm", :id, "--cpus", "2"]
-         res.customize ["modifyvm", :id, "--memory", "2000"]
-       end
-   end
+  #config.vm.define "srv3" do | b |
+  #  b.vm.box= VAGRANTFILE_DISTR
+  #  b.vm.host_name = "srv3"
+  #  b.vm.network "public_network", ip: "10.20.8.108", bridge: "wlp7s0"
+  #     b.vm.provider :virtualbox do |res|
+  #       res.customize ["modifyvm", :id, "--cpus", "2"]
+  #       res.customize ["modifyvm", :id, "--memory", "2000"]
+  #     end
+  # end
  
-  
-
   config.vm.synced_folder ".", "/vagrant", disabled: true
   #config.vm.provision "ansible" do |ansible|
   #  ansible.playbook = "playbook.yaml"
