@@ -1,5 +1,6 @@
 
 VAGRANTFILE_API_VERSION = "2"
+VAGRANTFILE_DISTR = "ubuntu/trusty64"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provider = 'virtualbox'
@@ -12,7 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    #p.ssh.username = "vagrant"
    #p.ssh.password = "vagrant"
    #p.vm.box = 'debian/bullseye64'
-   p.vm.box = 'debian/jessie64'
+   p.vm.box = VAGRANTFILE_DISTR
+   #p.vm.box = 'debian/buster64'
    p.vm.host_name = "srv1"
    p.vm.network "public_network", ip: "10.20.8.106", bridge: "wlp7s0" 
        p.vm.provider :virtualbox do |res|
@@ -22,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "srv2" do | b |
-   b.vm.box= 'debian/jessie64'
+   b.vm.box= VAGRANTFILE_DISTR
    b.vm.host_name = "srv2"
    b.vm.network "public_network", ip: "10.20.8.107", bridge: "wlp7s0"
       b.vm.provider :virtualbox do |res|
@@ -32,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "srv3" do | b |
-    b.vm.box= 'debian/jessie64'
+    b.vm.box= VAGRANTFILE_DISTR
     b.vm.host_name = "srv3"
     b.vm.network "public_network", ip: "10.20.8.108", bridge: "wlp7s0"
        b.vm.provider :virtualbox do |res|
