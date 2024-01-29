@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   #config.ssh.insert_key = false
 
-  config.vm.define "srv4" do | p |
+  config.vm.define "srv5" do | p |
    #p.ssh.insert_key = false
    #p.ssh.private_key_path = false
    #p.ssh.username = "vagrant"
@@ -16,11 +16,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    #p.vm.box = 'debian/bullseye64'
    p.vm.box = VAGRANTFILE_DISTR
    #p.vm.box = 'debian/buster64'
-   p.vm.host_name = "srv4"
-   p.vm.network "public_network", ip: "10.20.8.109", bridge: "wlp7s0" 
+   p.vm.host_name = "srv5"
+   p.vm.network "public_network", ip: "10.20.8.110", bridge: "wlp7s0" 
        p.vm.provider :virtualbox do |res|
           res.customize ["modifyvm", :id, "--cpus", "2"]
-          res.customize ["modifyvm", :id, "--memory", "2000"]
+          res.customize ["modifyvm", :id, "--memory", "8000"]
        end
   end
 
